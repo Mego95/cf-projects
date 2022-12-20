@@ -133,16 +133,25 @@ public class CombinationsSixProject1App {
     }
 
     public static boolean hasTwoOrLessSameConsecutive(int[] arr) {
+        int cursor = -1;
+        int count = 0;
+        final int THRESHOLD = 2;
+
         if (arr == null) return false;
 
         // not sure if/how to validate
         if (arr.length < N) return false;
 
-        for (int i = 0; i < arr.length - 3; i++) {
-            if (arr[i] == arr[i+1]) {
-                if (arr[i+1] == arr[i+2]) {
-                    return false;
-                }
+        for (int i = 0; i < arr.length - 1; i++) {
+            if (cursor == arr[i]) {
+                count++;
+            } else {
+                count = 0;
+            }
+            cursor = arr[i];
+
+            if (count > THRESHOLD) {
+                return false;
             }
         }
 
@@ -154,10 +163,9 @@ public class CombinationsSixProject1App {
 
         // not sure if/how to validate
         if (arr.length < N) return false;
-
-        if (arr[5] == arr[4]) {
-            if (arr[4] == arr[3]) {
-                if (arr[3] == arr[2]) {
+        if (arr[N - 1] == arr[N - 2]) {
+            if (arr[N - 2] == arr[N - 3]) {
+                if (arr[N - 3] == arr[N - 4]) {
                     return false;
                 }
             }
